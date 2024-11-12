@@ -6,14 +6,17 @@
 
 int main(){
     char texto[100];
-    FILE* parchivo = fopen("datos.txt","r");
-    if(parchivo==NULL){
+    FILE* porigen = fopen("origen.txt","r");
+    FILE* pdestino = fopen("copia.txt","w");
+    if(porigen==NULL){
         printf("El archivo no existe\n");
     } else {
-        while(fgets(texto,100,parchivo)){
-            fputs("%s", texto);
+        while(feof(porigen) == 0){
+            fgets(texto,100,porigen);
+            fputs(texto,pdestino);
         }
-        fclose(parchivo);
+        fclose(porigen);
+        fclose(pdestino);
     }
     return 0;
 }

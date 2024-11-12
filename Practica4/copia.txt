@@ -1,0 +1,3 @@
+hola  
+hay que copiar un texto
+en el otro archivo

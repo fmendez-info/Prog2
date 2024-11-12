@@ -6,13 +6,13 @@
 
 int main(){
     char texto[100];
-    int c, lineas=0;
+    int lineas=0;
     FILE* parchivo = fopen("datos.txt","r");
     if(parchivo==NULL){
         printf("El archivo no existe\n");
     } else {
-        while((c = fgetc(parchivo))!=-1){
-            if(c=='\n'){
+        while(feof(parchivo) == 0){
+            if(fgetc(parchivo) == '\n'){
                 lineas++;
             }
         }

@@ -7,18 +7,16 @@
 
 int main(){
     char texto[100];
-    int lineas=0;
     FILE* parchivo = fopen("datos.txt","r");
     if(parchivo==NULL){
         printf("El archivo no existe\n");
     } else {
-        while(fgets(texto,100,parchivo)){
-            printf("linea %d:-->",lineas);
+        while(feof(parchivo) == 0){
+            fgets(texto,100,parchivo);
             printf("%s", texto);
-            lineas++;
         }
         fclose(parchivo);
     }
-
+    printf("\n");
     return 0;
 }
