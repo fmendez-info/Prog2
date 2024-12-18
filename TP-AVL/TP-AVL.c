@@ -71,7 +71,7 @@ Nodo* crearNodo(int valor){
 void actualizarAltura(Nodo* n){
     int altura_izq = altura(n->hi);
     int altura_der = altura(n->hd);
-    n->alt = 1 + altura_izq > altura_der ? altura_izq : altura_der;
+    n->alt = 1 + (altura_izq > altura_der ? altura_izq : altura_der);
 }
 
 Nodo* insertar(Nodo* n, int valor){
@@ -79,6 +79,7 @@ Nodo* insertar(Nodo* n, int valor){
     if(n==NULL){
         return crearNodo(valor);
     }
+    printf("funcion insertar con nodo(%d)\n", n->dato);
 
     if(valor < n->dato){
         n->hi = insertar(n->hi, valor);
@@ -91,9 +92,10 @@ Nodo* insertar(Nodo* n, int valor){
 
     // actualizo la altura del nodo
     actualizarAltura(n);
+    printf("Nodo (%d) - Altura (%d)\n", n->dato, n->alt);
 
     int balance = factorBalanceo(n);
-    //printf("Factor balance en %d = %d\n", n->dato, balance);
+    printf("Factor balance en (%d) = %d\n", n->dato, balance);
     
     if(balance > 1 && valor < n->hi->dato){
         printf("Desbalance I-I\n");
@@ -112,7 +114,7 @@ Nodo* insertar(Nodo* n, int valor){
         return rotacionDI(n);
     }
 
-    printf("Arbol balanceado\n");
+    printf("Arbol balanceado para (%d)\n", n->dato);
     
     return n;
 }
